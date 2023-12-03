@@ -11,27 +11,29 @@
  * f => Function
  * 
  * data-generic-select-index => Index da opção no select
+ * 
+ * Atual: Obter os elementos
 */
 
 class Generic_Select {
+    // Construtor
     constructor() {
-        this.e_input    = null;
-        this.c_input    = null;
-        this.c_options  = null;
-        this.e_option   = null;
+        this.e_input            = null;
+        this.c_input            = null;
+        this.c_options          = null;
+        this.e_option           = null;
+        this.f_on_select_option = null;
     }
 
+    // Obtém os elementos do Select
     f_get_parts() {
-        console.log("f_get_parts()");
         this.c_options  = $(".a22_widget_generic_select_options", self.ctx.$container);
         this.e_option   = $(".a22_widget_generic_select_option", self.ctx.$container);
         this.c_input    = $(".a22_widget_generic_select_input_container", self.ctx.$container);
         this.e_input    = $(".a22_widget_generic_select_input", self.ctx.$container);
-        console.clear()
-        console.log(this.c_options);
-        console.log(this.e_input);
     }
 
+    // Recalcula o tamanho e posição do container das opções
     f_on_resize() {
             // Obtendo as novas dimensões do Select
             let select_pos  = {
@@ -48,33 +50,31 @@ class Generic_Select {
             });
     }
 
+    // Mostra o container das opções
     f_show_options() {
-        console.log("f_show_options()");
         this.f_on_resize();
         this.c_options.css({"display" : "flex"});
     }
 
+    // Esconde o container das opções
     f_hide_options() {
         this.f_on_resize();
         this.c_options.css({"display" : "none"});
     }
 
+    // Trata quando uma opção é selecionada
     f_select_option(element) {
         // Atribuindo texto da opção ao input
         this.e_input.val(element[0].innerText);
         // Atribuindo valor da opção ao input
         this.e_input.attr("data-generic-select-index", element.attr("data-generic-select-index"));
+        this.f_on_select_option();
     }
 
+    // Registra os eventos do Select
     f_register_events() {
-        console.log("f_register_events()");
-        // Quando clicar (sem soltar) em um opção
-        // $(document).on("mousedown", ".a22_widget_generic_select_option", (event) => {
-        //     this.f_select_option($(event.currentTarget));
-        // });
-        
+        // Quando clicar (sem soltar) no container das opções
         this.c_options.on("mousedown", (e) => {
-            console.log(e.target);
             this.f_select_option($(e.target));
         });
 
@@ -87,9 +87,20 @@ class Generic_Select {
         this.e_input.on("blur", () => {
             this.f_hide_options();
         });
+        
+        // Impedindo que escrevam no input
+        this.e_input.on("change", () => {
+            this.e_input.val(`${this.e_input.attr("data-generic-select-index")} - ${configs_path[this.e_input.attr("data-generic-select-index")]["label"]}`);
+        });
     }
     
+    // Adiciona uma opção no Select
     f_add_option(index, text) {
         this.c_options.append($(`<div data-generic-select-index="${index}" class="a22_widget_generic_select_option"> ${text} </div>`));
+    }
+    
+    // Retorna o data-generic-select-index
+    f_get_option_selected() {
+        return Number(this.e_input.attr("data-generic-select-index"));
     }
 }
