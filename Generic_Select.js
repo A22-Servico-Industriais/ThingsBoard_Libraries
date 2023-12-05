@@ -1,7 +1,7 @@
 /**
  * @author      Luiz Eurico da Silva Neto
  * @date        02/12/2023
- * @version     1.0.0
+ * @version     1.1.0
  * @copyright   A22 - Serviços Industriais
  * 
  * Objeto para manipular o Select Genérico
@@ -17,7 +17,8 @@
 
 class Generic_Select {
     // Construtor
-    constructor() {
+    constructor(container) {
+        this.container          = container;
         this.e_input            = null;
         this.c_input            = null;
         this.c_options          = null;
@@ -27,10 +28,10 @@ class Generic_Select {
 
     // Obtém os elementos do Select
     f_get_parts() {
-        this.c_options  = $(".a22_widget_generic_select_options", self.ctx.$container);
-        this.e_option   = $(".a22_widget_generic_select_option", self.ctx.$container);
-        this.c_input    = $(".a22_widget_generic_select_input_container", self.ctx.$container);
-        this.e_input    = $(".a22_widget_generic_select_input", self.ctx.$container);
+        this.c_options  = $(".a22_widget_generic_select_options", this.container);
+        this.e_option   = $(".a22_widget_generic_select_option", this.container);
+        this.c_input    = $(".a22_widget_generic_select_input_container", this.container);
+        this.e_input    = $(".a22_widget_generic_select_input", this.container);
     }
 
     // Recalcula o tamanho e posição do container das opções
