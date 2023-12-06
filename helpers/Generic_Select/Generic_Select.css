@@ -1,0 +1,118 @@
+/* 
+    @author     Luiz Eurico da Silva Neto
+    @date       02/12/2023
+    @version    1.0.0
+    @copyright  A22 Serviços Industriais
+
+    Estilização dos elementos do Generic Select
+*/
+
+/* CSS padrão para Widgets A22 */
+.a22_widget_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 800px;
+    width: 100%;
+    padding: 1%;
+}
+
+.a22_widget_container > section {
+    flex-grow: 1;
+}
+
+.a22_widget_title {
+    font-family: sans-serif;
+    font-size: 1.5rem;
+    color: rgb(7, 90, 164);
+    cursor: default;
+}
+
+.a22_widget_button {
+    background-color: rgb(7, 90, 164);
+    border: 2px solid rgb(7, 90, 164);
+    color: white;
+    padding: .5% 2%;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: .2s;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 180px;
+}
+
+.a22_widget_input, .a22_widget_generic_select_input {
+    border: 2px solid white;
+    padding: 5px 10px;
+    font-size: 1.2rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 15px;
+    flex-grow: 1;
+    text-align: center;
+    background-color: rgb(7, 90, 164);
+    color: white;
+    width: 90%;
+}
+
+.a22_widget_generic_select_input { cursor: pointer; }
+
+.a22_widget_input::placeholder, .a22_widget_generic_select_input::placeholder { color: white; }
+
+.a22_widget_generic_select_measure {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.a22_widget_button:hover {
+    color: rgb(7, 90, 164);
+    background-color: white;
+}
+
+.a22_widget_generic_select_input_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.a22_widget_generic_select_options {
+    overflow-y: scroll;
+    max-height: 200px;
+    border-radius: 15px;
+    padding: 1% 0;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    background-color: rgb(7, 90, 164);
+}
+
+.a22_widget_generic_select_options::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.a22_widget_generic_select_options::-webkit-scrollbar-track {
+  background: rgb(7, 90, 164);
+  border-radius: 15px;
+}
+
+.a22_widget_generic_select_options::-webkit-scrollbar-thumb {
+  background-color: blue;
+  border-radius: 15px;
+  border: 3px solid white;
+}
+
+.a22_widget_generic_select_option {
+    padding: 1% 0;
+    padding-left: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    cursor: pointer;
+    color: white;
+    opacity: .6;
+    flex-grow: 1;
+}
+
+.a22_widget_generic_select_option:hover {
+    opacity: 1;
+}
